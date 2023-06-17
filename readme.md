@@ -1,5 +1,5 @@
-<div align="center">
-    <img src="readme-logos.svg" alt="logos">
+<div align=center>
+  <img alt="header" src="./assets/header.jpg"/>
 </div>
 
 # Portfolio
