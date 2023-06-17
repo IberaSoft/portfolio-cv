@@ -1,25 +1,6 @@
-<svg height="auto" width="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-  <foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">
-      <style>
-        .container {
-          display: inline-flex;
-          justify-content: center;
-          align-self: center;
-          padding: 24px;
-          margin-bottom: 24px;
-          background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-          width: 100%;
-        }
-      </style>
-      <div class="container">
-        <img alt="Nextjs" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="100px"/>
-        <img alt="Notion" src="https://cdn.cdnlogo.com/logos/n/64/notion.svg" width="100px" style="padding: 0 24px">
-        <img alt="Typescript" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg" width="100px"/>
-      </div>
-    </div>
-  </foreignObject>
-</svg>
+<div align="center">
+    <img src="readme-logos.svg" alt="logos">
+</div>
 
 # Portfolio
 
