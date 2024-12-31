@@ -359,6 +359,7 @@
 .notion-header {
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(16px);
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 .dark-mode .notion-header {
