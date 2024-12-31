@@ -33,10 +33,13 @@ export const FooterImpl: React.FC = () => {
     setHasMounted(true)
   }, [])
 
+  // Get current year
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className={styles.footer}>
       <div className={styles.copyright}>
-        © Copyright {config.author}
+        {`© Copyright 2009 - ${currentYear}. Built with ❤️ in Málaga, SP.`}
       </div>
 
       <div className={styles.settings}>
