@@ -15,9 +15,9 @@ This is my personal [website site](https://juancruzllorens.dev/) built with Noti
 This project requires a recent version of Node.js (recommended >= 18).
 
 1. Change [site.config.ts](./site.config.ts) with your Notion page id.
-2. `npm install`
-3. `npm run dev` to test locally
-4. `npm run deploy` to deploy to Vercel
+2. `pnpm install`
+3. `pnpm run dev` to test locally
+4. `pnpm run deploy` to deploy to Vercel
 
 > ## License
 
