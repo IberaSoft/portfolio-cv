@@ -18,9 +18,10 @@
 # misc
 .DS_Store
 *.pem
+notes.txt
 
 # ide
-.idea
+.vscode
 
 # debug
 npm-debug.log*
