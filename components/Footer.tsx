@@ -1,12 +1,5 @@
-import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
-import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
-import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
-import { FaMastodon } from '@react-icons/all-files/fa/FaMastodon'
-import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
-import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
-import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
-import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
-import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
+import { FaEnvelopeOpen, FaGithub, FaLinkedin, FaMastodon, FaXTwitter, FaYoutube, FaZhihu } from 'react-icons/fa6'
+import { IoMoonSharp, IoSunnyOutline } from 'react-icons/io5'
 import * as React from 'react'
 
 import * as config from '@/lib/config'
@@ -62,7 +55,7 @@ export function FooterImpl() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaTwitter />
+            <FaXTwitter />
           </a>
         )}
 
@@ -121,7 +114,7 @@ export function FooterImpl() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaEnvelopeOpenText />
+            <FaEnvelopeOpen />
           </a>
         )}
 
