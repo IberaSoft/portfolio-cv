@@ -1,1 +1,1 @@
-declare module "got"
+declare module 'got'
