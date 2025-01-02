@@ -167,7 +167,7 @@
 }
 
 .notion-title {
-  display: block;
+  display: none;
   text-align: center;
 }
 
@@ -355,6 +355,10 @@
 .notion-page-icon-hero.notion-page-icon-image span,
 .notion-page-icon-hero.notion-page-icon-image img {
   border-radius: 50%;
+}
+
+.breadcrumbs span.title {
+  display: none;
 }
 
 .notion-header {

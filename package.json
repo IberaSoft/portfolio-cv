@@ -2,8 +2,8 @@
   "name": "portfolio-cv",
   "version": "2.0.0",
   "private": true,
-  "description": "Portfolio builded with Next.js and Notion.",
-  "author": "Juan Llorens",
+  "description": "My personal website built with Next.js and Notion.",
+  "author": "Juan Cruz Llorens",
   "repository": "iberasoft/portfolio-cv",
   "license": "MIT",
   "engines": {

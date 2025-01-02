@@ -29,7 +29,7 @@ export function FooterImpl() {
   return (
     <footer className={styles.footer}>
       <div className={styles.copyright}>
-        {`© Copyright 2009 - ${currentYear}. Built with ❤️ in Málaga, SP.`}
+        {`© Copyright 2009 - ${currentYear}.`}
       </div>
 
       <div className={styles.settings}>
