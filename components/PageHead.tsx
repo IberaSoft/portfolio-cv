@@ -33,7 +33,7 @@ export function PageHead({
         content='width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover'
       />
 
-      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name='mobile-web-app-capable' content='yes' />
       <meta name='apple-mobile-web-app-status-bar-style' content='black' />
 
       <meta
@@ -43,12 +43,22 @@ export function PageHead({
         key='theme-color-light'
       />
       <meta
-      name='keywords'
-      content='curriculum, vitae, resume, cv, portfolio, senior, front-end, developer, software, engineer'
-    />
+        name='keywords'
+        content='curriculum, vitae, resume, cv, portfolio, senior, front-end, developer, software, engineer'
+      />
 
-      <meta name='theme-color' media='(prefers-color-scheme: light)' content='#fefffe' key='theme-color-light'/>
-      <meta name='theme-color' media='(prefers-color-scheme: dark)' content='#2d3439' key='theme-color-dark'/>
+      <meta
+        name='theme-color'
+        media='(prefers-color-scheme: light)'
+        content='#fefffe'
+        key='theme-color-light'
+      />
+      <meta
+        name='theme-color'
+        media='(prefers-color-scheme: dark)'
+        content='#2d3439'
+        key='theme-color-dark'
+      />
 
       <meta name='subject' content='Curriculum Vitae' />
       <meta name='robots' content='noindex, nofollow' />

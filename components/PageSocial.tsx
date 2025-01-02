@@ -1,6 +1,12 @@
 import type * as React from 'react'
 import cs from 'classnames'
-import { FaXTwitter, FaGithub, FaLinkedin, FaEnvelopeOpen, FaYoutube } from 'react-icons/fa6'
+import {
+  FaXTwitter,
+  FaGithub,
+  FaLinkedin,
+  FaEnvelopeOpen,
+  FaYoutube
+} from 'react-icons/fa6'
 
 import * as config from '@/lib/config'
 

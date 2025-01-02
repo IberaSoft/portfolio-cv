@@ -8,8 +8,8 @@ import { type PageProps, type Params } from '@/lib/types'
 
 // Define the type for languagePageIds
 interface LanguagePageIds {
-  default: string;
-  [key: string]: string;
+  default: string
+  [key: string]: string
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
@@ -19,7 +19,9 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
 
   try {
     // Use language page IDs from site config
-    const pageId = (languagePageIds as LanguagePageIds)[rawPageId] || (languagePageIds as LanguagePageIds).default
+    const pageId =
+      (languagePageIds as LanguagePageIds)[rawPageId] ||
+      (languagePageIds as LanguagePageIds).default
     const props = await resolveNotionPage(domain, pageId)
 
     return { props, revalidate: 10 }

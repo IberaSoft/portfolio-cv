@@ -1,4 +1,12 @@
-import { FaEnvelopeOpen, FaGithub, FaLinkedin, FaMastodon, FaXTwitter, FaYoutube, FaZhihu } from 'react-icons/fa6'
+import {
+  FaEnvelopeOpen,
+  FaGithub,
+  FaLinkedin,
+  FaMastodon,
+  FaXTwitter,
+  FaYoutube,
+  FaZhihu
+} from 'react-icons/fa6'
 import { IoMoonSharp, IoSunnyOutline } from 'react-icons/io5'
 import * as React from 'react'
 

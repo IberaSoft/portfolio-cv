@@ -1,5 +1,5 @@
 import type * as types from 'notion-types'
-import { IoMoonSharp, IoSunnyOutline } from "react-icons/io5";
+import { IoMoonSharp, IoSunnyOutline } from 'react-icons/io5'
 import cs from 'classnames'
 import * as React from 'react'
 import { Breadcrumbs, Header, Search, useNotionContext } from 'react-notion-x'
@@ -12,31 +12,28 @@ import { useDarkMode } from '@/lib/use-dark-mode'
 import styles from './styles.module.css'
 
 function ToggleThemeButton() {
-  const [hasMounted, setHasMounted] = React.useState(false);
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const [hasMounted, setHasMounted] = React.useState(false)
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
 
   // Delay render until component mounted to align with client-side JS workload
   React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
+    setHasMounted(true)
+  }, [])
 
   const onToggleTheme = React.useCallback(() => {
-    toggleDarkMode();
-  }, [toggleDarkMode]);
+    toggleDarkMode()
+  }, [toggleDarkMode])
 
   // Render a loading state or placeholder until mounted
   if (!hasMounted) {
-    return <div className={styles.loadingPlaceholder}>Loading...</div>; // Placeholder while loading
+    return <div className={styles.loadingPlaceholder}>Loading...</div> // Placeholder while loading
   }
 
   return (
-    <div
-      className={cs('breadcrumb', 'button')}
-      onClick={onToggleTheme}
-    >
+    <div className={cs('breadcrumb', 'button')} onClick={onToggleTheme}>
       {isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
     </div>
-  );
+  )
 }
 
 export function NotionPageHeader({
@@ -44,11 +41,11 @@ export function NotionPageHeader({
 }: {
   block: types.CollectionViewPageBlock | types.PageBlock
 }) {
-  const { components, mapPageUrl } = useNotionContext();
-  const router = useRouter();
+  const { components, mapPageUrl } = useNotionContext()
+  const router = useRouter()
 
   if (navigationStyle === 'default') {
-    return <Header block={block} />;
+    return <Header block={block} />
   }
 
   return (
@@ -60,7 +57,7 @@ export function NotionPageHeader({
           {navigationLinks
             ?.map((link, index) => {
               if (!link.url) {
-                return null;
+                return null
               }
 
               return (
@@ -75,7 +72,7 @@ export function NotionPageHeader({
                 >
                   {link.title}
                 </Link>
-              );
+              )
             })
             .filter(Boolean)}
 
@@ -85,5 +82,5 @@ export function NotionPageHeader({
         </div>
       </div>
     </header>
-  );
+  )
 }
