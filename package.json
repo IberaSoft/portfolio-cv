@@ -26,9 +26,9 @@
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
     "test": "run-p test:*",
-    "test:lint": "eslint .",
-    "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
-    "prepare": "husky",
+    "test:lint": "eslint . --fix",
+    "test:prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css,json}'",
+    "prepare": "husky init",
     "lint-staged": "lint-staged",
     "pre-commit": "lint-staged"
   },

@@ -2,7 +2,7 @@ import type * as types from 'notion-types'
 import { IoMoonSharp, IoSunnyOutline } from 'react-icons/io5'
 import cs from 'classnames'
 import * as React from 'react'
-import { Breadcrumbs, Header, Search, useNotionContext } from 'react-notion-x'
+import { Breadcrumbs, Header, Search } from 'react-notion-x'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -41,7 +41,6 @@ export function NotionPageHeader({
 }: {
   block: types.CollectionViewPageBlock | types.PageBlock
 }) {
-  const { components, mapPageUrl } = useNotionContext()
   const router = useRouter()
 
   if (navigationStyle === 'default') {
