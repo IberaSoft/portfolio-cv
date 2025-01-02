@@ -14,7 +14,7 @@ export default siteConfig({
   author: 'Juan Cruz Llorens',
 
   // open graph metadata (optional)
-  description: 'My porfolio as Senior Front End Developer',
+  description: 'Juan Cruz Llorens`s Resume',
 
   // social usernames (optional)
   twitter: 'juancllorens',
@@ -40,26 +40,23 @@ export default siteConfig({
 
   // map of notion page IDs to URL paths (optional)
   // any pages defined here will override their default URL paths
-  // example:
-  //
-  // pageUrlOverrides: {
-  //   '/foo': '067dd719a912471ea9a3ac10710e7fdf',
-  //   '/bar': '0be6efce9daf42688f65c76b89f8eb27'
-  // }
-  pageUrlOverrides: null,
+  pageUrlOverrides: {
+    '/': '67401994f32149379de8b25b8abb7746',
+    '/es': '2fda80b664cc4f8ab7ea5e0754b87f44',
+    '/en': '67401994f32149379de8b25b8abb7746'
+  },
 
   // whether to use the default notion navigation style or a custom one with links to
-  // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  // navigationStyle: 'default',
+  // important pages
   navigationStyle: 'custom',
   navigationLinks: [
     {
       title: 'Español',
-      pageId: '2fda80b664cc4f8ab7ea5e0754b87f44'
+      url: '/es'
     },
     {
       title: 'English',
-      pageId: '67401994f32149379de8b25b8abb7746'
+      url: '/en'
     }
   ]
 })
