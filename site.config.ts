@@ -38,6 +38,13 @@ export default siteConfig({
   // environment variables. see the readme for more info
   isRedisEnabled: false,
 
+  // Language-specific page IDs
+  languagePageIds: {
+    default: '67401994f32149379de8b25b8abb7746',
+    es: '2fda80b664cc4f8ab7ea5e0754b87f44',
+    en: '67401994f32149379de8b25b8abb7746'
+  },
+
   // map of notion page IDs to URL paths (optional)
   // any pages defined here will override their default URL paths
   pageUrlOverrides: {

@@ -1,10 +1,16 @@
 import { type GetStaticProps } from 'next'
 
 import { NotionPage } from '@/components/NotionPage'
-import { domain, isDev } from '@/lib/config'
+import { domain, isDev, languagePageIds } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
 import { type PageProps, type Params } from '@/lib/types'
+
+// Define the type for languagePageIds
+interface LanguagePageIds {
+  default: string;
+  [key: string]: string;
+}
 
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context
@@ -12,7 +18,9 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const rawPageId = context.params.pageId as string
 
   try {
-    const props = await resolveNotionPage(domain, rawPageId)
+    // Use language page IDs from site config
+    const pageId = (languagePageIds as LanguagePageIds)[rawPageId] || (languagePageIds as LanguagePageIds).default
+    const props = await resolveNotionPage(domain, pageId)
 
     return { props, revalidate: 10 }
   } catch (err) {

@@ -4,6 +4,7 @@ import cs from 'classnames'
 import * as React from 'react'
 import { Breadcrumbs, Header, Search, useNotionContext } from 'react-notion-x'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { isSearchEnabled, navigationLinks, navigationStyle } from '@/lib/config'
 import { useDarkMode } from '@/lib/use-dark-mode'
@@ -44,6 +45,7 @@ export function NotionPageHeader({
   block: types.CollectionViewPageBlock | types.PageBlock
 }) {
   const { components, mapPageUrl } = useNotionContext();
+  const router = useRouter();
 
   if (navigationStyle === 'default') {
     return <Header block={block} />;
@@ -57,31 +59,23 @@ export function NotionPageHeader({
         <div className='notion-nav-header-rhs breadcrumbs'>
           {navigationLinks
             ?.map((link, index) => {
-              if (!link.pageId && !link.url) {
+              if (!link.url) {
                 return null;
               }
 
-              if (link.pageId) {
-                return (
-                  <Link
-                    href={mapPageUrl(link.pageId)}
-                    key={index}
-                    className={cs(styles.navLink, 'breadcrumb', 'button')}
-                  >
-                    {link.title}
-                  </Link>
-                );
-              } else {
-                return (
-                  <Link
-                    href={link.url}
-                    key={index}
-                    className={cs(styles.navLink, 'breadcrumb', 'button')}
-                  >
-                    {link.title}
-                  </Link>
-                );
-              }
+              return (
+                <Link
+                  href={link.url}
+                  key={index}
+                  className={cs(styles.navLink, 'breadcrumb', 'button')}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    router.push(link.url)
+                  }}
+                >
+                  {link.title}
+                </Link>
+              );
             })
             .filter(Boolean)}
 
