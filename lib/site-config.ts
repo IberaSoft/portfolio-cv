@@ -33,12 +33,20 @@ export interface SiteConfig {
 
   navigationStyle?: types.NavigationStyle
   navigationLinks?: Array<NavigationLink>
+  
+  languagePageIds: LanguagePageIds
 }
 
 export interface NavigationLink {
   title: string
   pageId?: string
   url?: string
+}
+
+export interface LanguagePageIds {
+  default: string
+  es: string
+  en: string
 }
 
 export const siteConfig = (config: SiteConfig): SiteConfig => {
