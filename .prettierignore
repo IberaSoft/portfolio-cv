@@ -4,6 +4,12 @@ dist/
 node_modules/
 .next/
 .vercel/
-
 .demo/
 .renderer/
+
+# Configuration files
+.eslintignore
+.prettierignore
+.husky/
+.gitignore
+*.sh

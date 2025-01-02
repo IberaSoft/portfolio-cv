@@ -29,7 +29,8 @@
     "test:lint": "eslint .",
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
     "prepare": "husky",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",
