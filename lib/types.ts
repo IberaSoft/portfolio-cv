@@ -1,8 +1,15 @@
 import { type ParsedUrlQuery } from 'node:querystring'
 
-import { type ExtendedRecordMap, type PageMap } from 'notion-types'
+import {
+  type ExtendedRecordMap,
+  type PageMap,
+  type PreviewImageMap
+} from 'notion-types'
+import type { getTweet as getTweetData } from 'react-tweet/api'
 
 export * from 'notion-types'
+
+export type TweetData = Awaited<ReturnType<typeof getTweetData>>
 
 export type NavigationStyle = 'default' | 'custom'
 
@@ -19,7 +26,8 @@ export interface PageProps {
 }
 
 export interface ExtendedTweetRecordMap extends ExtendedRecordMap {
-  tweets: Record<string, any>
+  tweets: Record<string, TweetData | null>
+  preview_images?: PreviewImageMap
 }
 
 export interface Params extends ParsedUrlQuery {

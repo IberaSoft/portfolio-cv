@@ -4,7 +4,7 @@ import pMap from 'p-map'
 import pMemoize from 'p-memoize'
 import { getTweet as getTweetData } from 'react-tweet/api'
 
-import type { ExtendedTweetRecordMap } from './types'
+import type { ExtendedTweetRecordMap, TweetData } from './types'
 import { db } from './db'
 
 export async function getTweetsMap(
@@ -27,7 +27,7 @@ export async function getTweetsMap(
   ;(recordMap as ExtendedTweetRecordMap).tweets = tweetsMap
 }
 
-async function getTweetImpl(tweetId: string): Promise<any> {
+async function getTweetImpl(tweetId: string): Promise<TweetData | null> {
   if (!tweetId) return null
 
   const cacheKey = `tweet:${tweetId}`
@@ -36,11 +36,12 @@ async function getTweetImpl(tweetId: string): Promise<any> {
     try {
       const cachedTweet = await db.get(cacheKey)
       if (cachedTweet || cachedTweet === null) {
-        return cachedTweet
+        return cachedTweet as TweetData | null
       }
     } catch (err) {
       // ignore redis errors
-      console.warn(`redis error get "${cacheKey}"`, err.message)
+      const error = err as Error
+      console.warn(`redis error get "${cacheKey}"`, error.message)
     }
 
     const tweetData = (await getTweetData(tweetId)) || null
@@ -49,12 +50,14 @@ async function getTweetImpl(tweetId: string): Promise<any> {
       await db.set(cacheKey, tweetData)
     } catch (err) {
       // ignore redis errors
-      console.warn(`redis error set "${cacheKey}"`, err.message)
+      const error = err as Error
+      console.warn(`redis error set "${cacheKey}"`, error.message)
     }
 
     return tweetData
-  } catch (err: any) {
-    console.warn('failed to get tweet', tweetId, err.message)
+  } catch (err) {
+    const error = err as Error
+    console.warn('failed to get tweet', tweetId, error.message)
     return null
   }
 }
