@@ -26,6 +26,9 @@ importers:
       fathom-client:
         specifier: ^3.7.2
         version: 3.7.2
+      katex:
+        specifier: ^0.16.25
+        version: 0.16.25
       ky:
         specifier: ^1.14.0
         version: 1.14.0
