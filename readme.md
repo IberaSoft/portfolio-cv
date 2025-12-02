@@ -1,24 +1,60 @@
-<div align=center>
-  <img alt="header" src="./assets/header.jpg" width="auto" height="200" />
-</div>
+# Portfolio Website
 
-# Portfolio
+This is my personal CV website built with Next.js, TypeScript, and Notion as a headless CMS.
 
-[![English](https://img.shields.io/badge/CV-English-blue)](https://github.com/IberaSoft/portfolio/blob/master/doc/cv-english.pdf) [![Spanish](https://img.shields.io/badge/CV-Spanish-orange)](https://github.com/IberaSoft/portfolio/blob/master/doc/cv-spanish.pdf)
+🌐 **Live Site:** [juancruzllorens.dev](https://juancruzllorens.dev/)
 
-> ## Intro
+## Tech Stack
 
-This is my personal [website site](https://juancruzllorens.dev/) built with Notion as a CMS, react-notion-x, Next.js, and Vercel.
+- **Framework:** Next.js 16 with Pages Router
+- **Language:** TypeScript
+- **CMS:** Notion (via react-notion-x)
+- **Styling:** CSS Modules
+- **Deployment:** Vercel
+- **Analytics:** Fathom, PostHog (optional)
 
-> ## Setup
+## Features
 
-This project requires a recent version of Node.js (recommended >= 18).
+- 🌍 Bilingual support (English/Spanish)
+- ⚡ ISR with 10-second revalidation
+- 📱 Responsive design
+- 🎨 Notion page rendering with syntax highlighting
+- 📊 Built-in analytics support
+- 🔍 Bundle analysis tools
 
-1. Change [site.config.ts](./site.config.ts) with your Notion page id.
-2. `pnpm install`
-3. `pnpm run dev` to test locally
-4. `pnpm run deploy` to deploy to Vercel
+## Quick Start
 
-> ## License
+**Requirements:** Node.js ≥18, pnpm
 
-MIT © [Juan Llorens](https://juancruzllorens.dev)
+1. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+2. **Configure Notion**
+   - Update `site.config.ts` with your Notion page IDs
+   - Optionally copy `.env.example` to `.env` for analytics
+
+3. **Development**
+
+   ```bash
+   pnpm dev
+   ```
+
+4. **Deploy**
+   ```bash
+   pnpm run deploy
+   ```
+
+## Available Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm test` - Run linting and formatting
+- `pnpm run analyze` - Analyze bundle size
+- `pnpm run deploy` - Deploy to Vercel
+
+## License
+
+MIT © [Juan Cruz Llorens](https://juancruzllorens.dev)
