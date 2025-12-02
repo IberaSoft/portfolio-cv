@@ -28,6 +28,9 @@
     "test": "run-p test:*",
     "test:lint": "eslint . --fix",
     "test:prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css,json}'",
+    "release:patch": "npm run test && npm version patch && git push origin main --tags",
+    "release:minor": "npm run test && npm version minor && git push origin main --tags",
+    "release:major": "npm run test && npm version major && git push origin main --tags",
     "prepare": "husky init",
     "lint-staged": "lint-staged",
     "pre-commit": "lint-staged"
