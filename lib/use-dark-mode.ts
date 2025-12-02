@@ -12,33 +12,9 @@ export function useDarkMode() {
     // Only run on client side
     if (typeof window === 'undefined') return
 
-    // Read current state from DOM (set by the inline script)
+    // Read current state from DOM (set synchronously by the inline script in _document.tsx)
+    // The inline script applies the class before React hydrates, so this is reliable
     const currentIsDark = document.body.classList.contains(CLASS_NAME_DARK)
-
-    // Also check localStorage for consistency
-    let storedValue = false
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      storedValue = stored !== null ? JSON.parse(stored) : false
-    } catch (err) {
-      console.warn(
-        'Failed to read dark mode preference from localStorage:',
-        err
-      )
-    }
-
-    // If DOM and localStorage don't match, trust the DOM (set by inline script)
-    // but update localStorage to match
-    if (currentIsDark !== storedValue) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentIsDark))
-      } catch (err) {
-        console.warn(
-          'Failed to sync dark mode preference to localStorage:',
-          err
-        )
-      }
-    }
 
     setIsDarkMode(currentIsDark)
     setMounted(true)
