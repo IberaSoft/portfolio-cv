@@ -22,6 +22,13 @@ export default withBundleAnalyzer({
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
 
+  // Turbopack configuration for Next.js 16+
+  turbopack: {
+    // Empty config to satisfy Turbopack requirements
+    // Note: resolveAlias for react/react-dom only needed when linking local react-notion-x
+  },
+
+  // Webpack configuration (for legacy webpack builds)
   webpack: (config, _context) => {
     // Workaround for ensuring that `react` and `react-dom` resolve correctly
     // when using a locally-linked version of `react-notion-x`.
