@@ -23,7 +23,6 @@ import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
 import { Footer } from './Footer'
-import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
 import { Page404 } from './Page404'
@@ -185,7 +184,7 @@ export function NotionPage({
   const { isDarkMode } = useDarkMode()
 
   const siteMapPageUrl = React.useMemo(() => {
-    const params: any = {}
+    const params: Record<string, string> = {}
     if (lite) params.lite = lite
 
     const searchParams = new URLSearchParams(params)
@@ -232,7 +231,11 @@ export function NotionPage({
 
   if (!config.isServer) {
     // add important objects to the window global for easy debugging
-    const g = window as any
+    const g = window as Window & {
+      pageId?: string
+      recordMap?: typeof recordMap
+      block?: typeof block
+    }
     g.pageId = pageId
     g.recordMap = recordMap
     g.block = block
@@ -290,8 +293,6 @@ export function NotionPage({
         pageAside={pageAside}
         footer={footer}
       />
-
-      {/* <GitHubShareButton /> */}
     </>
   )
 }

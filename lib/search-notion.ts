@@ -25,7 +25,7 @@ async function searchNotionImpl(
       }
 
       // convert non-2xx HTTP responses into errors
-      const error: any = new Error(res.statusText)
+      const error = new Error(res.statusText) as Error & { response: Response }
       error.response = res
       throw error
     })

@@ -47,6 +47,13 @@ This is my personal CV website built with Next.js, TypeScript, and Notion as a h
    pnpm run deploy
    ```
 
+## SSL Certificates
+
+**Development**: SSL validation is automatically disabled for local development
+**Production**: Full SSL validation enabled (secure by default)
+
+No configuration needed - works out of the box in both environments.
+
 ## Releasing a New Version
 
 The project supports **automated releases** with built-in testing, versioning, and deployment to Vercel.
