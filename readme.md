@@ -44,15 +44,9 @@ This is my personal CV website built with Next.js, TypeScript, and Notion as a h
 
 4. **Deploy**
    ```bash
-   pnpm run deploy
+   pnpm run deploy        # Deploy to preview
+   pnpm run deploy:prod   # Deploy to production
    ```
-
-## SSL Certificates
-
-**Development**: SSL validation is automatically disabled for local development
-**Production**: Full SSL validation enabled (secure by default)
-
-No configuration needed - works out of the box in both environments.
 
 ## Releasing a New Version
 
@@ -116,7 +110,8 @@ pnpm run deploy
 
 ### Deployment
 
-- `pnpm run deploy` - Manual deploy to Vercel
+- `pnpm run deploy` - Deploy to preview environment
+- `pnpm run deploy:prod` - Deploy to production
 - `pnpm run release:patch` - Automated patch release (bug fixes)
 - `pnpm run release:minor` - Automated minor release (new features)
 - `pnpm run release:major` - Automated major release (breaking changes)
