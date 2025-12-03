@@ -18,6 +18,8 @@ import * as Fathom from 'fathom-client'
 import { useRouter } from 'next/router'
 import posthog from 'posthog-js'
 import * as React from 'react'
+import { IconContext } from 'react-icons'
+import { ThemeProvider } from 'next-themes'
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
   fathomConfig,
@@ -60,5 +62,21 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider
+      attribute='class'
+      defaultTheme='system'
+      enableSystem
+      disableTransitionOnChange={false}
+      themes={['light', 'dark']}
+      value={{
+        light: 'light-mode',
+        dark: 'dark-mode'
+      }}
+    >
+      <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
+        <Component {...pageProps} />
+      </IconContext.Provider>
+    </ThemeProvider>
+  )
 }

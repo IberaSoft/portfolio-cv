@@ -1,13 +1,11 @@
 import cs from 'classnames'
 import type { SVGProps } from 'react'
 
-import styles from './styles.module.css'
-
 export function LoadingIcon(props: SVGProps<SVGSVGElement>) {
   const { className, ...rest } = props
   return (
     <svg
-      className={cs(styles.loadingIcon, className)}
+      className={cs('animate-spin-slow block w-6 h-6 text-gray-400', className)}
       {...rest}
       viewBox='0 0 24 24'
     >

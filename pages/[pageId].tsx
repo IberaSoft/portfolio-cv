@@ -1,7 +1,7 @@
 import { type GetStaticProps } from 'next'
 
 import { NotionPage } from '@/components/NotionPage'
-import { domain, isDev, languagePageIds } from '@/lib/config'
+import { domain, isDev, languagePageIds, pageUrlOverrides } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
 import { type PageProps, type Params } from '@/lib/types'
@@ -18,10 +18,30 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const rawPageId = context.params.pageId as string
 
   try {
-    // Use language page IDs from site config
-    const pageId =
-      (languagePageIds as LanguagePageIds)[rawPageId] ||
+    // Check if there's a pageUrlOverride for this path first
+    // If not, check languagePageIds, otherwise pass rawPageId to resolveNotionPage
+    let pageId: string | undefined
+
+    if (pageUrlOverrides[rawPageId]) {
+      // pageUrlOverride exists - pass rawPageId to resolveNotionPage which will handle it
+      pageId = rawPageId
+    } else if (
+      languagePageIds &&
+      (languagePageIds as LanguagePageIds)[rawPageId]
+    ) {
+      // Use language page IDs from site config if it exists
+      pageId = (languagePageIds as LanguagePageIds)[rawPageId]
+    } else if (
+      languagePageIds &&
       (languagePageIds as LanguagePageIds).default
+    ) {
+      // Fall back to default language page
+      pageId = (languagePageIds as LanguagePageIds).default
+    } else {
+      // No override or language mapping, pass rawPageId to resolveNotionPage
+      pageId = rawPageId
+    }
+
     const props = await resolveNotionPage(domain, pageId)
 
     return { props, revalidate: 10 }
