@@ -50,7 +50,8 @@ export default siteConfig({
   pageUrlOverrides: {
     '/': '67401994f32149379de8b25b8abb7746',
     '/es': '2fda80b664cc4f8ab7ea5e0754b87f44',
-    '/en': '67401994f32149379de8b25b8abb7746'
+    '/en': '67401994f32149379de8b25b8abb7746',
+    '/test': '16d54c061d33807a869afab5d426a03e'
   },
 
   // whether to use the default notion navigation style or a custom one with links to

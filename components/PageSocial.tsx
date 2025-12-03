@@ -1,4 +1,4 @@
-import type * as React from 'react'
+import * as React from 'react'
 import cs from 'classnames'
 import {
   FaXTwitter,
@@ -10,8 +10,6 @@ import {
 
 import * as config from '@/lib/config'
 
-import styles from './PageSocial.module.css'
-
 interface SocialLink {
   name: string
   title: string
@@ -20,11 +18,11 @@ interface SocialLink {
 }
 
 const socialLinks: SocialLink[] = [
-  config.twitter && {
-    name: 'twitter',
-    href: `https://twitter.com/${config.twitter}`,
-    title: `Twitter @${config.twitter}`,
-    icon: <FaXTwitter />
+  config.linkedin && {
+    name: 'linkedin',
+    href: `https://www.linkedin.com/in/${config.linkedin}`,
+    title: `LinkedIn ${config.author}`,
+    icon: <FaLinkedin />
   },
 
   config.github && {
@@ -34,11 +32,11 @@ const socialLinks: SocialLink[] = [
     icon: <FaGithub />
   },
 
-  config.linkedin && {
-    name: 'linkedin',
-    href: `https://www.linkedin.com/in/${config.linkedin}`,
-    title: `LinkedIn ${config.author}`,
-    icon: <FaLinkedin />
+  config.twitter && {
+    name: 'twitter',
+    href: `https://twitter.com/${config.twitter}`,
+    title: `Twitter @${config.twitter}`,
+    icon: <FaXTwitter />
   },
 
   config.newsletter && {
@@ -56,23 +54,104 @@ const socialLinks: SocialLink[] = [
   }
 ].filter(Boolean)
 
-export function PageSocial() {
+interface PageSocialProps {
+  variant?: 'sticky' | 'footer'
+}
+
+const getSocialBgColor = (name: string) => {
+  const colors: Record<string, string> = {
+    linkedin: 'bg-social-linkedin',
+    github: 'bg-social-github',
+    twitter: 'bg-social-twitter',
+    newsletter: 'bg-social-newsletter',
+    youtube: 'bg-social-youtube'
+  }
+  return colors[name] || 'bg-gray-600'
+}
+
+export function PageSocial({ variant = 'sticky' }: PageSocialProps) {
+  const isSticky = variant === 'sticky'
+  const isFooter = variant === 'footer'
+
   return (
-    <div className={styles.pageSocial}>
+    <div
+      className={cs(
+        'flex items-center text-center text-fg',
+        isSticky && 'flex-col max-md:hidden',
+        isFooter && 'flex-row justify-center gap-3'
+      )}
+    >
       {socialLinks.map((action) => (
         <a
-          className={cs(styles.action, styles[action.name])}
+          className={cs(
+            'group relative transition-all duration-300 ease-out rounded-none',
+            'flex flex-col justify-center items-center no-underline',
+            'select-none cursor-pointer',
+            'hover:scale-110 hover:shadow-xl',
+            'transform-gpu',
+            isSticky && 'mb-4 last:mb-0',
+            isFooter && 'w-10 h-10',
+            getSocialBgColor(action.name)
+          )}
           href={action.href}
           key={action.name}
           title={action.title}
           target='_blank'
           rel='noopener noreferrer'
+          style={
+            isSticky
+              ? {
+                  width: '3em',
+                  height: '3em',
+                  minWidth: '3em',
+                  minHeight: '3em',
+                  flexShrink: 0
+                }
+              : {
+                  width: '40px',
+                  height: '40px',
+                  minWidth: '40px',
+                  minHeight: '40px',
+                  flexShrink: 0
+                }
+          }
         >
-          <div className={styles.actionBg}>
-            <div className={styles.actionBgPane} />
+          {/* Icon container - white icons with different sizes */}
+          <div
+            className={cs(
+              'flex items-center justify-center text-white transition-all duration-300 ease-out group-hover:scale-110',
+              isSticky && 'text-3xl',
+              isFooter && 'text-lg'
+            )}
+            style={
+              isSticky
+                ? { fontSize: '1.875rem', width: '100%', height: '100%' }
+                : { fontSize: '1.125rem', width: '100%', height: '100%' }
+            }
+          >
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <div
+                className={isSticky ? 'social-icon-wrapper' : ''}
+                style={{
+                  width: isSticky ? '60%' : '70%',
+                  height: isSticky ? '60%' : '70%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {action.icon}
+              </div>
+            </div>
           </div>
-
-          <div className={styles.actionBg}>{action.icon}</div>
         </a>
       ))}
     </div>

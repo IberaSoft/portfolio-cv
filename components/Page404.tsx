@@ -1,7 +1,6 @@
 import type * as types from '@/lib/types'
 
 import { PageHead } from './PageHead'
-import styles from './styles.module.css'
 
 export function Page404({ site, pageId, error }: types.PageProps) {
   const title = site?.name || 'Page Not Found'
@@ -10,8 +9,8 @@ export function Page404({ site, pageId, error }: types.PageProps) {
     <>
       <PageHead site={site} title={title} />
 
-      <div className={styles.container}>
-        <main className={styles.main}>
+      <div className='absolute inset-0 flex justify-center items-center p-notion text-base leading-6 text-gray-700 bg-bg font-notion'>
+        <main className='flex flex-col justify-center items-center'>
           <h1>Page Not Found</h1>
 
           {error ? (
@@ -28,7 +27,7 @@ export function Page404({ site, pageId, error }: types.PageProps) {
           <img
             src='/404.png'
             alt='404 Not Found'
-            className={styles.errorImage}
+            className='max-w-full w-160'
           />
         </main>
       </div>

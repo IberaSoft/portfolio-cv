@@ -1,52 +1,62 @@
+import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
-const STORAGE_KEY = 'darkMode'
-const CLASS_NAME_DARK = 'dark-mode'
-const CLASS_NAME_LIGHT = 'light-mode'
-
+/**
+ * Modern dark mode hook using next-themes
+ *
+ * This replaces the old implementation that used dangerouslySetInnerHTML
+ * and provides a cleaner, more reliable theme management system.
+ *
+ * Features:
+ * - No flash of wrong theme (FOWT)
+ * - System preference detection
+ * - Persistent user preference
+ * - SSR-safe hydration
+ * - TypeScript support
+ */
 export function useDarkMode() {
+  const { theme, setTheme, resolvedTheme, systemTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(false)
 
+  // Prevent hydration mismatch by only showing theme-dependent content after mount
   useEffect(() => {
-    // Only run on client side
-    if (typeof window === 'undefined') return
-
-    // Read current state from DOM (set synchronously by the inline script in _document.tsx)
-    // The inline script applies the class before React hydrates, so this is reliable
-    const currentIsDark = document.body.classList.contains(CLASS_NAME_DARK)
-
-    setIsDarkMode(currentIsDark)
     setMounted(true)
   }, [])
 
-  const updateBodyClasses = (dark: boolean) => {
-    if (typeof document === 'undefined') return
-
-    if (dark) {
-      document.body.classList.remove(CLASS_NAME_LIGHT)
-      document.body.classList.add(CLASS_NAME_DARK)
-    } else {
-      document.body.classList.remove(CLASS_NAME_DARK)
-      document.body.classList.add(CLASS_NAME_LIGHT)
-    }
-  }
+  const isDarkMode = mounted ? resolvedTheme === 'dark' : false
 
   const toggleDarkMode = () => {
-    const newValue = !isDarkMode
-    setIsDarkMode(newValue)
-    updateBodyClasses(newValue)
-
-    // Store preference
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue))
-    } catch (err) {
-      console.warn('Failed to save dark mode preference to localStorage:', err)
-    }
+    const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
   }
+
+  const setLightMode = () => setTheme('light')
+  const setDarkMode = () => setTheme('dark')
+  const setSystemMode = () => setTheme('system')
 
   return {
-    isDarkMode: mounted ? isDarkMode : false,
-    toggleDarkMode
+    // Theme state
+    isDarkMode,
+    isLightMode: mounted ? resolvedTheme === 'light' : true,
+    isSystemMode: theme === 'system',
+    mounted,
+
+    // Current themes
+    theme,
+    resolvedTheme,
+    systemTheme,
+
+    // Theme setters
+    toggleDarkMode,
+    setLightMode,
+    setDarkMode,
+    setSystemMode,
+    setTheme
   }
 }
+
+/**
+ * Legacy compatibility export
+ * @deprecated Use the enhanced useDarkMode hook instead
+ */
+export { useDarkMode as useDarkModeTheme }

@@ -1,76 +1,118 @@
-import { IconContext } from 'react-icons'
-import Document, { Head, Html, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 
-export default class MyDocument extends Document {
-  render() {
-    return (
-      <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
-        <Html lang='en'>
-          <Head>
-            <link
-              rel='icon'
-              type='image/png'
-              href='/favicon-96x96.png'
-              sizes='96x96'
-            />
-            <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-            <link rel='shortcut icon' href='/favicon.ico' />
-            <link
-              rel='apple-touch-icon'
-              sizes='180x180'
-              href='/apple-touch-icon.png'
-            />
-            <meta name='apple-mobile-web-app-title' content='JC Resume' />
-            <link rel='manifest' href='/manifest.json' />
-          </Head>
+/**
+ * Custom Document component for the portfolio website
+ *
+ * This file handles:
+ * - HTML document structure
+ * - Meta tags and favicon configuration
+ * - PWA manifest setup
+ * - Theme detection and prevention of flash of wrong theme
+ *
+ * Uses next-themes for modern theme management without dangerouslySetInnerHTML
+ */
+export default function Document() {
+  return (
+    <Html lang='en' suppressHydrationWarning>
+      <Head>
+        {/* Favicon Configuration */}
+        <FaviconLinks />
 
-          <body>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-/** Inlined version of noflash.js from use-dark-mode */
-;(function () {
-  var storageKey = 'darkMode'
-  var classNameDark = 'dark-mode'
-  var classNameLight = 'light-mode'
-  
-  // Apply classes synchronously to prevent flash and ensure React can read them
-  function setClassOnDocumentBody(darkMode) {
-    document.body.classList.add(darkMode ? classNameDark : classNameLight)
-    document.body.classList.remove(darkMode ? classNameLight : classNameDark)
-  }
+        {/* PWA Configuration */}
+        <PWAMeta />
 
-  var preferDarkQuery = '(prefers-color-scheme: dark)'
-  var mql = window.matchMedia(preferDarkQuery)
-  var supportsColorSchemeQuery = mql.media === preferDarkQuery
-  var localStorageTheme = null
-  try {
-    localStorageTheme = localStorage.getItem(storageKey)
-  } catch (err) {}
-  var localStorageExists = localStorageTheme !== null
-  if (localStorageExists) {
-    localStorageTheme = JSON.parse(localStorageTheme)
-  }
+        {/* Performance and SEO meta tags */}
+        <PerformanceMeta />
+      </Head>
 
-  // Determine the source of truth
-  if (localStorageExists) {
-    // source of truth from localStorage
-    setClassOnDocumentBody(localStorageTheme)
-  } else if (supportsColorSchemeQuery) {
-    // source of truth from system
-    setClassOnDocumentBody(mql.matches)
-    localStorage.setItem(storageKey, JSON.stringify(mql.matches))
-  }
-})();
-                `
-              }}
-            />
-            <Main />
+      <body className='antialiased'>
+        {/* Prevent flash of wrong theme - handled by next-themes ThemeProvider */}
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
+}
 
-            <NextScript />
-          </body>
-        </Html>
-      </IconContext.Provider>
-    )
-  }
+/**
+ * Favicon and app icon configuration component
+ */
+function FaviconLinks() {
+  return (
+    <>
+      <link
+        rel='icon'
+        type='image/png'
+        href='/favicon-96x96.png'
+        sizes='96x96'
+      />
+      <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+      <link rel='shortcut icon' href='/favicon.ico' />
+      <link
+        rel='apple-touch-icon'
+        sizes='180x180'
+        href='/apple-touch-icon.png'
+      />
+    </>
+  )
+}
+
+/**
+ * Progressive Web App meta tags
+ */
+function PWAMeta() {
+  return (
+    <>
+      <meta name='apple-mobile-web-app-title' content='JC Resume' />
+      <meta name='application-name' content='JC Resume' />
+      <meta
+        name='theme-color'
+        content='#ffffff'
+        media='(prefers-color-scheme: light)'
+      />
+      <meta
+        name='theme-color'
+        content='#1f2027'
+        media='(prefers-color-scheme: dark)'
+      />
+      <link rel='manifest' href='/manifest.json' />
+    </>
+  )
+}
+
+/**
+ * Performance and SEO optimization meta tags
+ */
+function PerformanceMeta() {
+  return (
+    <>
+      {/* DNS Prefetch for external domains */}
+      <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+      <link rel='dns-prefetch' href='//www.notion.so' />
+
+      {/* Preconnect to important domains */}
+      <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
+
+      {/* Google Fonts - Modern Minimalistic Typography */}
+      <link rel='preconnect' href='https://fonts.googleapis.com' />
+      <link
+        rel='preconnect'
+        href='https://fonts.gstatic.com'
+        crossOrigin='anonymous'
+      />
+      <link
+        href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Source+Sans+Pro:wght@400;500;600&display=swap'
+        rel='stylesheet'
+      />
+
+      {/* Viewport meta for responsive design */}
+      <meta
+        name='viewport'
+        content='width=device-width, initial-scale=1, viewport-fit=cover'
+      />
+
+      {/* Color scheme preference */}
+      <meta name='color-scheme' content='light dark' />
+    </>
+  )
 }

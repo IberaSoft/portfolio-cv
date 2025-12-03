@@ -28,7 +28,6 @@ import { NotionPageHeader } from './NotionPageHeader'
 import { Page404 } from './Page404'
 import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
-import styles from './styles.module.css'
 
 // -----------------------------------------------------------------------------
 // dynamic imports for optional components
@@ -271,7 +270,7 @@ export function NotionPage({
 
       <NotionRenderer
         bodyClassName={cs(
-          styles.notion,
+          'notion',
           pageId === site.rootNotionPageId && 'index-page'
         )}
         darkMode={isDarkMode}

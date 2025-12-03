@@ -54,6 +54,7 @@ Thumbs.db
 *.tmp
 *.temp
 notes.txt
+notes.md
 
 # Notes for Agents
 WARP.md

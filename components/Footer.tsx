@@ -1,135 +1,41 @@
-import {
-  FaEnvelopeOpen,
-  FaGithub,
-  FaLinkedin,
-  FaMastodon,
-  FaXTwitter,
-  FaYoutube,
-  FaZhihu
-} from 'react-icons/fa6'
-import { IoMoonSharp, IoSunnyOutline } from 'react-icons/io5'
 import * as React from 'react'
-
-import * as config from '@/lib/config'
-import { useDarkMode } from '@/lib/use-dark-mode'
-
-import styles from './styles.module.css'
-
-// TODO: merge the data and icons from PageSocial with the social links in Footer
+import { PageSocial } from './PageSocial'
+import { ThemeToggle } from './ThemeToggle'
+import { cs } from 'react-notion-x'
 
 export function FooterImpl() {
-  const { isDarkMode, toggleDarkMode } = useDarkMode()
   const currentYear = new Date().getFullYear()
 
-  const onToggleDarkMode = React.useCallback(
-    (e) => {
-      e.preventDefault()
-      toggleDarkMode()
-    },
-    [toggleDarkMode]
-  )
-
   return (
-    <footer className={styles.footer}>
-      <div className={styles.copyright}>
-        {`© Copyright 2009 - ${currentYear}.`}
-      </div>
-
-      <div className={styles.settings}>
-        <a
-          className={styles.toggleDarkMode}
-          href='#'
-          role='button'
-          onClick={onToggleDarkMode}
-          title='Toggle dark mode'
+    <footer
+      className='w-full max-w-notion mx-auto mt-auto mb-4'
+      style={{ padding: '2rem 1.5rem' }}
+    >
+      <div className='grid grid-cols-3 items-center justify-items-center max-md:flex max-md:flex-col max-md:gap-4'>
+        {/* Left: Copyright */}
+        <div
+          className='text-gray-500 dark:text-gray-400 max-md:order-3 max-md:text-center'
+          style={{ fontSize: 'var(--font-size-copyright)' }}
         >
-          {isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
-        </a>
-      </div>
+          {`© Copyright 2009 - ${currentYear}.`}
+        </div>
 
-      <div className={styles.social}>
-        {config.twitter && (
-          <a
-            className={styles.twitter}
-            href={`https://twitter.com/${config.twitter}`}
-            title={`Twitter @${config.twitter}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaXTwitter />
-          </a>
-        )}
+        {/* Center: Theme Toggle */}
+        <div className='select-none flex justify-center max-md:order-1'>
+          <ThemeToggle
+            className={cs(
+              'breadcrumb',
+              'transition-colors duration-[250ms] ease-out',
+              'w-10 h-10 bg-transparent hover:text-social-twitter hover:transition-colors hover:duration-[50ms] hover:ease-out'
+            )}
+            size='lg'
+          />
+        </div>
 
-        {config.mastodon && (
-          <a
-            className={styles.mastodon}
-            href={config.mastodon}
-            title={`Mastodon ${config.getMastodonHandle()}`}
-            rel='me'
-          >
-            <FaMastodon />
-          </a>
-        )}
-
-        {config.zhihu && (
-          <a
-            className={styles.zhihu}
-            href={`https://zhihu.com/people/${config.zhihu}`}
-            title={`Zhihu @${config.zhihu}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaZhihu />
-          </a>
-        )}
-
-        {config.github && (
-          <a
-            className={styles.github}
-            href={`https://github.com/${config.github}`}
-            title={`GitHub @${config.github}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaGithub />
-          </a>
-        )}
-
-        {config.linkedin && (
-          <a
-            className={styles.linkedin}
-            href={`https://www.linkedin.com/in/${config.linkedin}`}
-            title={`LinkedIn ${config.author}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaLinkedin />
-          </a>
-        )}
-
-        {config.newsletter && (
-          <a
-            className={styles.newsletter}
-            href={`${config.newsletter}`}
-            title={`Newsletter ${config.author}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaEnvelopeOpen />
-          </a>
-        )}
-
-        {config.youtube && (
-          <a
-            className={styles.youtube}
-            href={`https://www.youtube.com/${config.youtube}`}
-            title={`YouTube ${config.author}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaYoutube />
-          </a>
-        )}
+        {/* Right: Social Buttons (visible on mobile, hidden on desktop where sticky version shows) */}
+        <div className='select-none flex justify-center max-md:order-2 md:hidden'>
+          <PageSocial variant='footer' />
+        </div>
       </div>
     </footer>
   )
