@@ -121,7 +121,7 @@ pnpm run release:major
 1. Check the Actions logs for detailed error messages
 2. Verify all secrets are properly set
 3. Test local build with `pnpm build`
-4. Test local deployment with `pnpm run deploy`
+4. Test local deployment with `pnpm run deploy` (preview) or `pnpm run deploy:prod`
 
 ## Manual Fallback
 
@@ -135,5 +135,6 @@ npm version patch/minor/major
 git push origin main --tags
 
 # Deploy manually
-pnpm run deploy
+pnpm run deploy        # Preview deployment
+pnpm run deploy:prod   # Production deployment
 ```
